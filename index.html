@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Next Bench Community</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --primary: #ff6b00;
+      --text: #f8f8f8;
+      --muted: #888888;
+      --accent: #1a1a1a;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: #121212;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    nav a {
+      margin-left: 2rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background: var(--primary);
+      transition: 0.4s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem 6rem;
+      min-height: 100vh;
+      background: linear-gradient(145deg, #121212, #1c1c1c);
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      color: var(--primary);
+      margin-top: 1rem;
+    }
+
+    .hero p {
+      max-width: 700px;
+      font-size: 1.2rem;
+      color: var(--muted);
+      margin: 1rem 0;
+    }
+
+    .stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    .stat {
+      text-align: center;
+      background: var(--accent);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255, 107, 0, 0.2);
+    }
+
+    .stat h2 {
+      color: var(--primary);
+      font-size: 2rem;
+      animation: countUp 2s ease-out forwards;
+    }
+
+    .stat p {
+      color: var(--muted);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 2rem;
+    }
+
+    section {
+      padding: 5rem 3rem;
+    }
+
+    .about {
+      background: #151515;
+      text-align: center;
+    }
+
+    .about p {
+      max-width: 800px;
+      margin: auto;
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .category-box {
+      background: var(--accent);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .category-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 107, 0, 0.3);
+    }
+
+    .category-box h3 {
+      color: var(--primary);
+    }
+
+    .category-box p {
+      color: var(--muted);
+    }
+
+    .faq {
+      background: #1a1a1a;
+    }
+
+    .faq-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .faq-item h4 {
+      color: var(--primary);
+    }
+
+    .faq-item p {
+      color: var(--muted);
+    }
+
+    footer {
+      background: #101010;
+      color: var(--muted);
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .social-icons a {
+      color: var(--muted);
+      margin: 0 10px;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: var(--primary);
+    }
+
+    @keyframes countUp {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const counters = document.querySelectorAll(".stat h2");
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const target = +counter.getAttribute("data-target");
+          const count = +counter.innerText;
+          const speed = 50;
+          const inc = Math.ceil(target / speed);
+
+          if (count < target) {
+            counter.innerText = count + inc;
+            setTimeout(updateCount, 30);
+          } else {
+            counter.innerText = target;
+          }
+        };
+
+        counter.innerText = 0;
+        updateCount();
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">NEXT BENCH</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#categories">Categories</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <h1>Welcome to Next Bench</h1>
+    <p>The community where college students turn into creators, coders, designers, and founders — together.</p>
+    <div class="stats">
+      <div class="stat">
+        <h2 data-target="100" +>100+</h2>
+        <p>Members</p>
+      </div>
+      <div class="stat">
+        <h2 data-target="10" +>10+</h2>
+        <p>Colleges</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <h2 class="section-title">About Next Bench</h2>
+    <p>Next Bench is India’s most relatable student-powered community. Born from dorm rooms and backbenches, it’s where college life meets ambition. We’re a tribe of young minds building content, startups, and a shared dream of creating something big — together.</p>
+  </section>
+
+  <section id="categories">
+    <h2 class="section-title">Who is this for?</h2>
+    <div class="category-grid">
+      <div class="category-box">
+        <h3>🎥 Content Creators</h3>
+        <p>Create content that connects and grows your personal brand.</p>
+      </div>
+      <div class="category-box">
+        <h3>💻 Developers</h3>
+        <p>Collaborate and build projects with other student coders.</p>
+      </div>
+      <div class="category-box">
+        <h3>🎨 Designers</h3>
+        <p>Craft modern designs and get inspired by community UI/UX work.</p>
+      </div>
+      <div class="category-box">
+        <h3>🚀 Startup Builders</h3>
+        <p>Validate ideas and build real businesses with your college squad.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <h4>What is Next Bench?</h4>
+      <p>A student-led community focused on creativity, tech, and growth.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Is there any cost to join?</h4>
+      <p>Nope. It’s absolutely free. We grow together, not charge each other.</p>
+    </div>
+    <div class="faq-item">
+      <h4>How can I contribute?</h4>
+      <p>Show up, share your skills, join collabs, or start projects. Your vibe builds the tribe.</p>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <p>📧 nextbenchcommunity@gmail.com</p>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>© 2025 Next Bench. All rights reserved.</p>
+    <p><a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+  </footer>
+</body>
+</html>
